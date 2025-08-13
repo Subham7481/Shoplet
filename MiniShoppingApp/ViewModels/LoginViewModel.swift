@@ -14,7 +14,7 @@ class LoginViewModel: ObservableObject{
     func validate(){
         if(email.isEmpty || password.isEmpty){
             errorMessage = "Please fill all the fields."
-        } else if(email.contains(".") && email.contains("@")){
+        } else if !(email.contains(".") && email.contains("@")){
             errorMessage = "Please enter a valid email address."
         } else {
             errorMessage = ""

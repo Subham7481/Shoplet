@@ -127,6 +127,7 @@ struct RegisterComponents: View {
                         
                         // Register Button
                         Button(action: {
+                            viewModel.validate()
                             Task{
                                 try await appwrite.onRegister(viewModel.email, viewModel.password)
                             }
@@ -180,9 +181,11 @@ struct RegisterComponents: View {
                             }
                         }
                         Spacer()
-                        Text(viewModel.errorMessage ?? "")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(Color.red)
+                        if let error = viewModel.errorMessage, !error.isEmpty{
+                            Text(viewModel.errorMessage ?? "")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(Color.red)
+                        }
                     }
                     .frame(minHeight: geometry.size.height)
                 }

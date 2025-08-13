@@ -18,6 +18,8 @@ struct LoginComponents: View {
     @Binding var isLoggedIn: Bool
     @ObservedObject var viewModel = LoginViewModel()
     let appwrite = AppWrite()
+    @State private var isLoading = false
+    @State private var showAlert = false
 
     var body: some View {
         NavigationStack{
@@ -87,6 +89,7 @@ struct LoginComponents: View {
                         
                         // Login Button
                         Button(action: {
+                            viewModel.validate()
                             Task{
                                 isLoggedIn = true
                                 try await appwrite.onLogin(viewModel.email, viewModel.password)
@@ -134,9 +137,11 @@ struct LoginComponents: View {
                         }
                         Spacer()
                         
-                        Text(viewModel.errorMessage ?? "")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(Color.red)
+                        if let error = viewModel.errorMessage, !error.isEmpty {
+                            Text(viewModel.errorMessage ?? "")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(Color.red)
+                        }
                     }
                     .frame(minHeight: geometry.size.height) // Fill screen height
                 }
