@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @Binding var isLoggedIn: Bool
-    @State private var navigateHome: Bool = false
+    @State private var navigateRegister: Bool = false
+    @State private var navigateLogin: Bool = false
     var body: some View {
         NavigationStack {
             ZStack{
@@ -21,8 +22,7 @@ struct ContentView: View {
                 HStack(){
                     VStack{
                         Button(action: {
-                            navigateHome = true
-                            isLoggedIn = true
+                            navigateRegister = true
                         }, label: {
                             Text("Sign Up")
                                 .font(.system(size: 18, weight: .bold))
@@ -31,10 +31,11 @@ struct ContentView: View {
                                 .foregroundColor(Color.white)
                                 .cornerRadius(10)
                         }).padding(.vertical, 60)
+                        NavigationLink(destination: RegisterView(isLoggedIn: $isLoggedIn), isActive: $navigateRegister){EmptyView()}
                         
                         Button(action: {
-                            navigateHome = true
-                            isLoggedIn = true
+                            navigateLogin = true
+//                            isLoggedIn = true
                         }, label: {
                             Text("Login")
                                 .font(.system(size: 18, weight: .bold))
@@ -44,7 +45,7 @@ struct ContentView: View {
                                 .cornerRadius(10)
                         })
                         
-                        NavigationLink(destination: HomeView(), isActive: $navigateHome){EmptyView()}
+                        NavigationLink(destination: LoginView(isLoggedIn: $isLoggedIn), isActive: $navigateLogin){EmptyView()}
                     }.padding()
                     Spacer()
                 }

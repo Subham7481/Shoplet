@@ -14,7 +14,6 @@ struct HomeView: View {
                 VStack{
                     HeaderView()
                     SearchView()
-                        .padding()
                     OfferView()
                     OfferImageSlide()
                     ShopCategory()
@@ -31,87 +30,111 @@ struct HomeView: View {
 
 struct HeaderView: View {
     var body: some View {
-        HStack{
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 60, height: 60, alignment: .leading)
-        
-            VStack(alignment: .leading){
-                Text("Good morning 👋")
-                    .font(.system(size: 16, weight: .light))
-                    .foregroundColor(Color.black.opacity(0.5))
+        GeometryReader { geometry in
+            HStack(spacing: geometry.size.width * 0.02) {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: geometry.size.width * 0.15,
+                           height: geometry.size.width * 0.15)
                 
-                Text("Subham")
-                    .font(.system(size: 18, weight: .bold))
+                VStack(alignment: .leading, spacing: geometry.size.height * 0.01) {
+                    Text("Good morning👋")
+                        .font(.system(size: geometry.size.width * 0.045, weight: .light))
+                        .foregroundColor(Color.black.opacity(0.5))
                     
-            }.padding()
-            Spacer()
-            Image(systemName: "bell")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
-            
-            Image(systemName: "heart")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
-                .padding()
-            
-            Image(systemName: "cart.circle")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
-        }.padding(.horizontal, 10)
+                    Text("Subham")
+                        .font(.system(size: geometry.size.width * 0.05, weight: .bold))
+                }
+                .padding(.leading, geometry.size.width * 0.02)
+                
+                Spacer()
+                
+                HStack(spacing: geometry.size.width * 0.04) {
+                    Image(systemName: "bell")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width * 0.08,
+                               height: geometry.size.width * 0.08)
+                    
+                    Image(systemName: "heart")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width * 0.08,
+                               height: geometry.size.width * 0.08)
+                    
+                    Image(systemName: "cart.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width * 0.08,
+                               height: geometry.size.width * 0.08)
+                }
+                .padding(.trailing, geometry.size.width * 0.02)
+            }
+            .padding(.horizontal, geometry.size.width * 0.03)
+        }
+        .frame(height: 80)
     }
 }
+
 
 struct SearchView: View {
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray.opacity(0.2))
-                .frame(width: 375, height: 50)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black.opacity(0.1), lineWidth: 1)
-                )
-            
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.gray)
-                    .padding(.leading, 10)
+        GeometryReader { geometry in
+            ZStack {
+                RoundedRectangle(cornerRadius: geometry.size.height * 0.2)
+                    .fill(Color.gray.opacity(0.2))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: geometry.size.height * 0.2)
+                            .stroke(Color.black.opacity(0.1), lineWidth: 1)
+                    )
                 
-                Text("Search")
-                    .foregroundColor(.gray)
-                
-                Spacer()
-
-                Image(systemName: "line.3.horizontal.decrease.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.gray)
-                    .padding(.trailing, 10)
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: geometry.size.height * 0.5)
+                        .foregroundColor(.gray)
+                        .padding(.leading, geometry.size.width * 0.03)
+                    
+                    Text("Search")
+                        .foregroundColor(.gray)
+                        .font(.system(size: geometry.size.height * 0.35))
+                    
+                    Spacer()
+                    
+                    Image(systemName: "line.3.horizontal.decrease.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: geometry.size.height * 0.5)
+                        .foregroundColor(.gray)
+                        .padding(.trailing, geometry.size.width * 0.03)
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height)
             }
-            .frame(width: 375, height: 50)
         }
+        .frame(height: 50) // can scale up or down and still adapt
+        .padding(.horizontal, 8)
     }
 }
 
+
+
 struct OfferView: View {
     var body: some View {
-        HStack{
-            Text("Special Offers")
-                .font(.system(size: 16, weight: .bold))
-            
-            Spacer()
-            
-            Text("See All")
-        }.padding(.horizontal)
+        GeometryReader { geometry in
+            HStack {
+                Text("Special Offers")
+                    .font(.system(size: geometry.size.width * 0.050, weight: .bold))
+                
+                Spacer()
+                
+                Text("See All")
+                    .font(.system(size: geometry.size.width * 0.04))
+            }
+            .padding(.horizontal, geometry.size.width * 0.03)
+        }
+        .frame(height: 30)
     }
 }
 

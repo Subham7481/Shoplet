@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0F8386352E49B9BF00668EBF /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = 0F8386342E49B9BF00668EBF /* Appwrite */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0FE6F76F2E45BDEE00477399 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F8386352E49B9BF00668EBF /* Appwrite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = MiniShoppingApp;
 			packageProductDependencies = (
+				0F8386342E49B9BF00668EBF /* Appwrite */,
 			);
 			productName = MiniShoppingApp;
 			productReference = 0FE6F7612E45BDEC00477399 /* MiniShoppingApp.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 0FE6F7582E45BDEC00477399;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0F8386332E49B9BF00668EBF /* XCRemoteSwiftPackageReference "sdk-for-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0FE6F7622E45BDEC00477399 /* Products */;
 			projectDirPath = "";
@@ -562,6 +571,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0F8386332E49B9BF00668EBF /* XCRemoteSwiftPackageReference "sdk-for-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/appwrite/sdk-for-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0F8386342E49B9BF00668EBF /* Appwrite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F8386332E49B9BF00668EBF /* XCRemoteSwiftPackageReference "sdk-for-swift" */;
+			productName = Appwrite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0FE6F7592E45BDEC00477399 /* Project object */;
 }
